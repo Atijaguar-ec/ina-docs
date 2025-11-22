@@ -66,9 +66,9 @@ ALTER TABLE my_table ADD COLUMN IF NOT EXISTS new_col ...; -- (MySQL 8.0+)
 ```
 
 ### 2. Nomenclatura de Base de Datos
-- **Tablas**: `snake_case`, singular (ej: `stock_order`, `company_user`).
-- **Columnas**: `snake_case` (ej: `first_name`, `is_active`).
-- **FKs**: `fk_<tabla_origen>_<tabla_destino>` (Flyway/Hibernate suelen generar nombres automáticos, pero si se hace manual, seguir esto).
+- **Tablas**: `PascalCase`, singular, alineadas con las entidades JPA (ej: `StockOrder`, `CompanyUser`).
+- **Columnas**: `camelCase` para campos de negocio y sufijo `_id` para claves foráneas (ej: `creationTimestamp`, `company_id`, `quality_document_id`).
+- **FKs**: `fk_<TablaOrigen>_<TablaDestino>` (Flyway/Hibernate suelen generar nombres automáticos, pero si se hace manual, seguir esto).
 
 ### 3. Datos Maestros
 Si la migración inserta datos fijos (ej: tipos de producto iniciales), usar `INSERT IGNORE` o verificar existencia.

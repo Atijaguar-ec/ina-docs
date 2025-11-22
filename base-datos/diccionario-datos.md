@@ -101,13 +101,13 @@ Define qué operaciones pueden realizarse en una ubicación.
 Aunque el esquema es genérico, ciertos campos se usan diferente según la cadena.
 
 ### Cacao (`COCOA`)
-- `moisture_percentage`: Crítico para cálculo de precio (seco vs húmedo).
-- `fermentation_grade`: Porcentaje de fermentación.
+- `moisturePercentage`: Crítico para cálculo de precio (seco vs húmedo).
+- `fermentationGrade`: Porcentaje de fermentación.
 
 ### Camarón (`SHRIMP`)
-- `bin_code`: Identificador del contenedor plástico de transporte.
-- `pool_number`: Número de piscina de origen.
-- `glazing_percentage`: Porcentaje de glaseado (hielo) en producto final.
+- `binCode`: Identificador del contenedor plástico de transporte.
+- `poolNumber`: Número de piscina de origen.
+- `glazingPercentage`: Porcentaje de glaseado (hielo) en producto final.
 
 ---
 

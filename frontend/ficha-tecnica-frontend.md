@@ -175,7 +175,7 @@ Para desarrollo local:
 ### Paso 1: Clonar Repositorio
 
 ```bash
-git clone https://github.com/INATrace/fe.git
+git clone https://github.com/Atijaguar-ec/fe.git
 cd fe
 ```
 
@@ -270,7 +270,7 @@ npm uninstall node-sass && npm install node-sass
 
 - [Documentación Oficial Angular](https://angular.io/docs)
 - [Guía de Estilos Angular](https://angular.io/guide/styleguide)
-- [Repositorio Oficial Frontend](https://github.com/INATrace/fe)
+- [Repositorio Oficial Frontend](https://github.com/Atijaguar-ec/fe)
 
 ---
 

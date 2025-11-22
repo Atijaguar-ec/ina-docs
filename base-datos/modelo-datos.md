@@ -98,7 +98,7 @@ Casi todas las tablas transaccionales tienen una columna `company_id`.
 - **Seguridad**: Hibernate Filters o cláusulas `WHERE` mandatorias en repositorios.
 
 ### 2. Auditoría (Envers)
-Por cada tabla crítica (ej: `stock_order`), existe una tabla `stock_order_aud`.
+Por cada tabla crítica (ej: `StockOrder`), existe una tabla `StockOrder_AUD`.
 - **Contenido**: Copia del registro + Tipo de Cambio (INS, UPD, DEL) + Timestamp + Usuario.
 - **Uso**: Permite reconstruir el estado exacto del sistema en cualquier punto del pasado.
 
@@ -113,7 +113,7 @@ Las entidades de catálogo usan el patrón de tabla de traducción.
 
 ## Tablas Clave y sus Campos
 
-### Tabla `stock_order` (Movimientos)
+### Tabla `StockOrder` (Movimientos)
 
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
@@ -123,8 +123,8 @@ Las entidades de catálogo usan el patrón de tabla de traducción.
 | `facility_id` | BIGINT | Ubicación donde ocurre. |
 | `status` | ENUM | `DRAFT`, `COMPLETED`, `CANCELLED`. |
 | `transaction_date` | DATETIME | Fecha real del evento. |
-| `moisture_percentage` | DECIMAL | % Humedad (Crítico en agrícolas). |
-| `moisture_weight_deduction`| DECIMAL | Peso descontado por humedad. |
+| `moisturePercentage` | DECIMAL | % Humedad (Crítico en agrícolas). |
+| `moistureWeightDeduction`| DECIMAL | Peso descontado por humedad. |
 
 ### Tabla `user` (Usuarios)
 

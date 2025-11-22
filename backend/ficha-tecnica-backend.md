@@ -347,10 +347,10 @@ V[YYYY]_[MM]_[DD]_[HH]_[MM]__[Descripcion].sql
 
 **Ejemplo**:
 ```sql
--- V2025_11_15_10_30__Add_moisture_fields_to_stock_order.sql
-ALTER TABLE stock_order 
-  ADD COLUMN moisture_percentage DECIMAL(5,2),
-  ADD COLUMN moisture_weight_deduction DECIMAL(38,2);
+-- V2025_10_30_02_00__Add_moisture_percentage_fields.sql
+ALTER TABLE StockOrder 
+  ADD COLUMN moisturePercentage DECIMAL(5,2),
+  ADD COLUMN moistureWeightDeduction DECIMAL(38,2);
 ```
 
 **Configuración**:
@@ -463,8 +463,8 @@ logging:
 #### 1. Clonar Repositorio
 
 ```bash
-git clone https://github.com/your-org/inatrace-backend.git
-cd inatrace-backend
+git clone https://github.com/Atijaguar-ec/backend.git
+cd backend
 ```
 
 #### 2. Configurar Base de Datos
@@ -755,8 +755,8 @@ mysql -u root -p -e "DROP DATABASE inatrace; CREATE DATABASE inatrace;"
 
 ### Código Fuente
 
-- Repositorio: `https://github.com/your-org/inatrace-backend`
-- Issues: `https://github.com/your-org/inatrace-backend/issues`
+- Repositorio: `https://github.com/Atijaguar-ec/backend`
+- Issues: `https://github.com/Atijaguar-ec/backend/issues`
 
 ---
 

@@ -106,16 +106,16 @@ INATrace es un sistema modular que integra:
 
 ```bash
 # 1. Clonar repositorios
-git clone https://github.com/your-org/inatrace-backend.git
-git clone https://github.com/your-org/inatrace-frontend.git
+git clone https://github.com/Atijaguar-ec/backend.git
+git clone https://github.com/Atijaguar-ec/fe.git
 
 # 2. Configurar variables de entorno (ver guías CI/CD)
 
 # 3. Levantar con Docker Compose
-cd inatrace-backend
+cd backend
 docker-compose up -d
 
-cd inatrace-frontend
+cd fe
 docker-compose up -d
 ```
 

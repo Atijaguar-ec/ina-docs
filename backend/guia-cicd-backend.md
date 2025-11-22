@@ -168,6 +168,11 @@ Existe un `Jenkinsfile` para entornos que requieren despliegue desde una infraes
 - Despliegue vía SSH similar, pero gestionado por credenciales de Jenkins.
 - Incluye paso de **Backup de Base de Datos** automático antes de desplegar en producción.
 
+En cuanto a configuración, la lógica de variables y secretos es coherente con las plantillas estándar de GitHub Actions:
+
+- La **matriz de variables sensibles** (host, usuario SSH, credenciales de BD, correo, usuario administrador, etc.) se define de forma neutral en `../despliegue/variables-secrets-template.md`.  En entornos con Jenkins estas variables se gestionan como **credenciales de Jenkins** y se materializan en ficheros `.env`, según se describe en `docs/tecnico/manual-jenkins-instalacion-configuracion.md`.
+- La estructura de despliegue por empresa/entorno es análoga a la de los workflows de GitHub Actions documentados en `../despliegue/plantilla-workflow-backend-empresa.md`; la diferencia es únicamente el orquestador (Jenkins en lugar de GitHub Actions) y el mecanismo de inyección de secretos.
+
 ---
 
 ## Troubleshooting de Despliegue
@@ -196,7 +201,7 @@ Existe un `Jenkinsfile` para entornos que requieren despliegue desde una infraes
 
 - [Ficha Técnica Backend](./ficha-tecnica-backend.md)
 - [Configuración de Variables](./configuracion.md)
-- [Repositorio de Código](https://github.com/your-org/backend)
+- [Repositorio de Código](https://github.com/Atijaguar-ec/backend)
 
 ---
 

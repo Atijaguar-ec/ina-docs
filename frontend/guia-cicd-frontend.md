@@ -135,6 +135,17 @@ El pipeline ejecuta los siguientes pasos en el servidor destino:
 
 ---
 
+## Plantillas estándar para secrets y despliegue multi‑empresa
+
+La configuración de secretos y despliegue por empresa en el frontend está alineada con las plantillas generales utilizadas en el backend:
+
+- La **lista neutralizada de secrets** para todos los entornos (incluyendo `STAGE_FE_{COMPANY}_*` y `PROD_FE_{COMPANY}_*` para frontend) se documenta en `../despliegue/variables-secrets-template.md`. Allí se definen los patrones de nombres recomendados para servidores, usuarios SSH y credenciales asociadas a cada compañía.
+- La estructura de **jobs de despliegue por empresa** para frontend (por ejemplo, `deploy-test-{company_code}` y `deploy-prod-{company_code}`) se describe en `../despliegue/plantilla-workflow-frontend-empresa.md`, que explica cómo reutilizar el archivo de plantilla técnica `fe/.github/workflows/deploy-frontend-company-template.yml` mediante placeholders (`{COMPANY_CODE}`, `{company_code}`, `{company-domain}`).
+
+De este modo, la documentación de frontend mantiene la misma línea que la del backend: una sola matriz de variables sensibles y un conjunto de plantillas estándar que pueden adaptarse a cualquier organización que opere INATrace.
+
+---
+
 ## Troubleshooting
 
 ### Error: `node-sass` en Build
@@ -160,7 +171,7 @@ El pipeline ejecuta los siguientes pasos en el servidor destino:
 
 - [Ficha Técnica Frontend](./ficha-tecnica-frontend.md)
 - [Configuración de Temas](./configuracion-temas.md)
-- [Repositorio Frontend](https://github.com/your-org/fe)
+- [Repositorio Frontend](https://github.com/Atijaguar-ec/fe)
 
 ---
 
