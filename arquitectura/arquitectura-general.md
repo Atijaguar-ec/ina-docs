@@ -59,21 +59,21 @@ INATrace actúa como el núcleo de información de la cadena de suministro, cone
 
 ```mermaid
 graph TD
-    User[Usuario / Actor de Cadena]
-    Consumer[Consumidor Final]
-    
+    User["Usuario / Actor de Cadena"]
+    Consumer["Consumidor Final"]
+
     subgraph "Sistema INATrace"
-        INATrace[Plataforma INATrace]
+        INATrace["Plataforma INATrace"]
     end
-    
-    ExternalAuth[Servicio de Email / SMS]
-    Beyco[Plataforma Beyco (Trading)]
-    Maps[Mapbox / Google Maps]
-    Rates[Exchange Rates API]
-    
+
+    ExternalAuth["Servicio de Email / SMS"]
+    Beyco["Plataforma Beyco (Trading)"]
+    Maps["Mapbox / Google Maps"]
+    Rates["Exchange Rates API"]
+
     User -->|Registra/Consulta| INATrace
     Consumer -->|Escanea QR| INATrace
-    
+
     INATrace -->|Envía Notificaciones| ExternalAuth
     INATrace -->|Sincroniza Ofertas| Beyco
     INATrace -->|Visualiza Geolocalización| Maps

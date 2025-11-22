@@ -1,4 +1,4 @@
-# INATrace - Documentación Técnica Oficial
+# INATrace - Documentación Técnica
 
 **INATrace** es una plataforma integral de trazabilidad para cadenas de valor agrícola que permite el seguimiento completo de productos desde la producción hasta el consumidor final, garantizando transparencia, calidad y sostenibilidad en toda la cadena de suministro.
 
