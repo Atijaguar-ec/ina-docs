@@ -1,0 +1,29 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos temporales
+*.tmp
+*.bak
+*.log
+
+# Node modules (si se agregan scripts de validación)
+node_modules/
+package-lock.json
+
+# Archivos de build (si se genera HTML desde Markdown)
+dist/
+build/
+out/
+
+# Archivos personales
+notas-personales.md
+TODO.md
