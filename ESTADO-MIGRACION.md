@@ -61,7 +61,7 @@
 - [x] `backend/guia-cicd-backend.md` - Neutralizada con ejemplos
 - [ ] `backend/apis-rest.md` - Endpoints principales
 - [x] `backend/configuracion.md` - Variables de entorno detalladas
-- [ ] `backend/troubleshooting-backend.md` - Problemas comunes
+- [x] `backend/troubleshooting-backend.md` - Problemas comunes
 
 #### Frontend (Prioridad Alta)
 - [x] `frontend/ficha-tecnica-frontend.md`
@@ -90,9 +90,8 @@
 - [ ] `formularios/campos-camaron.md`
 
 #### Otros Componentes (Prioridad Baja)
-- [ ] Mobile (ficha técnica, CI/CD)
-- [ ] Blockchain (ficha técnica, CI/CD)
-- [ ] Testing (estrategia, guías)
+- [x] Mobile (ficha técnica, CI/CD)
+- [x] Testing (estrategia, guías)
 - [ ] Operación (manuales)
 - [ ] Roadmap (backlog, propuestas)
 

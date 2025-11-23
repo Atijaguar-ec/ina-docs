@@ -170,8 +170,8 @@ Existe un `Jenkinsfile` para entornos que requieren despliegue desde una infraes
 
 En cuanto a configuración, la lógica de variables y secretos es coherente con las plantillas estándar de GitHub Actions:
 
-- La **matriz de variables sensibles** (host, usuario SSH, credenciales de BD, correo, usuario administrador, etc.) se define de forma neutral en `../despliegue/variables-secrets-template.md`.  En entornos con Jenkins estas variables se gestionan como **credenciales de Jenkins** y se materializan en ficheros `.env`, según se describe en `docs/tecnico/manual-jenkins-instalacion-configuracion.md`.
-- La estructura de despliegue por empresa/entorno es análoga a la de los workflows de GitHub Actions documentados en `../despliegue/plantilla-workflow-backend-empresa.md`; la diferencia es únicamente el orquestador (Jenkins en lugar de GitHub Actions) y el mecanismo de inyección de secretos.
+- La **matriz de variables sensibles** (host, usuario SSH, credenciales de BD, correo, usuario administrador, etc.) se define de forma neutral en [variables-secrets-template.md](../despliegue/variables-secrets-template.md).  En entornos con Jenkins estas variables se gestionan como **credenciales de Jenkins** y se materializan en ficheros `.env`, según se describe en [manual-jenkins-instalacion-configuracion.md](../../docs/tecnico/manual-jenkins-instalacion-configuracion.md).
+- La estructura de despliegue por empresa/entorno es análoga a la de los workflows de GitHub Actions documentados en [plantilla-workflow-backend-empresa.md](../despliegue/plantilla-workflow-backend-empresa.md); la diferencia es únicamente el orquestador (Jenkins en lugar de GitHub Actions) y el mecanismo de inyección de secretos.
 
 ---
 
