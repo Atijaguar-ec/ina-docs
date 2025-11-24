@@ -175,3 +175,4 @@ Las credenciales de mapas (tokens públicos de lectura) se gestionan como **vari
   - [Modelo de Datos](../base-datos/modelo-datos.md)
 - **CI/CD Mobile**:
   - [Guía CI/CD Mobile](./guia-cicd-mobile.md)
+  - [Análisis del Código Fuente Mobile](./analisis-codigo-fuente-mobile.md)

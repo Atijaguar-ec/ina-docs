@@ -92,8 +92,8 @@
 #### Otros Componentes (Prioridad Baja)
 - [x] Mobile (ficha técnica, CI/CD)
 - [x] Testing (estrategia, guías)
-- [ ] Operación (manuales)
-- [ ] Roadmap (backlog, propuestas)
+- [x] Operación (manuales)
+- [x] Roadmap (backlog, propuestas)
 
 ---
 
