@@ -2,7 +2,7 @@
 
 > **Audiencia**: DevOps, Desarrolladores Backend  
 > **Componente**: Backend  
-> **Última actualización**: Noviembre 2025
+> **Última actualización**: Diciembre 2025
 
 ## Descripción General
 
@@ -14,6 +14,7 @@ El pipeline de CI/CD del backend de INATrace está diseñado para garantizar la 
 - **Seguridad**: Escaneo de dependencias (OWASP) y gestión de secretos.
 - **Calidad**: Ejecución automática de pruebas unitarias e integración.
 - **Registro**: Publicación de imágenes en GitHub Container Registry (GHCR).
+- **Workflows Separados por Empresa**: Pipelines independientes para cada organización.
 
 ---
 
@@ -64,17 +65,49 @@ graph TD
 
 ---
 
+## Arquitectura de Workflows Separados (Diciembre 2025)
+
+A partir de diciembre 2025, el backend utiliza **workflows independientes por empresa/producto**, siguiendo mejores prácticas de DevOps.
+
+### Estructura de Workflows
+
+```
+backend/.github/workflows/
+├── deploy-backend-develop.yml    # 🚀 Development (Cacao + Shrimp)
+├── deploy-backend-unocace.yml    # 🍫 Empresa 1 - staging + production
+├── deploy-backend-dufer.yml      # 🦐 Empresa 2 - staging + production
+└── (Jenkinsfile)                 # 🏛️ Alternativa Jenkins (si aplica)
+```
+
+### Flujo de Despliegue por Branch
+
+| Branch | Workflow | Ambiente |
+|--------|----------|----------|
+| `develop` | `deploy-backend-develop.yml` | Dev Cacao + Shrimp |
+| `staging` | `deploy-backend-{empresa}.yml` | Staging por empresa |
+| `main` | `deploy-backend-{empresa}.yml` | Production por empresa |
+
+### Beneficios de la Separación
+
+| Aspecto | Beneficio |
+|---------|-----------|
+| **Aislamiento** | Un fallo en Empresa A no afecta a Empresa B |
+| **Releases independientes** | Cada empresa tiene su propio calendario |
+| **Trazabilidad** | Historial y logs separados por producto |
+| **Escalabilidad** | Agregar empresa = crear nuevo workflow |
+
+---
+
 ## Configuración de GitHub Actions
 
-El archivo principal es `.github/workflows/deploy-backend.yml`.
+Cada workflow sigue la estructura: `quality` → `build` → `deploy-staging` → `deploy-production`.
 
 ### Inputs de Disparo Manual
 
 | Input | Descripción | Opciones |
 |-------|-------------|----------|
-| `environment` | Entorno destino | `develop`, `develop-shrimp`, `staging`, `main` |
+| `environment` | Entorno destino | `staging`, `production` |
 | `skip_quality` | Omitir tests (Solo emergencias) | `true`, `false` |
-| `skip_security` | Omitir scan OWASP | `true`, `false` |
 
 ### Variables de Entorno del Pipeline
 
@@ -161,7 +194,7 @@ Esto permite pruebas aisladas de nuevas funcionalidades específicas por cadena.
 
 ## Pipeline Alternativo: Jenkins
 
-Existe un `Jenkinsfile` para entornos que requieren despliegue desde una infraestructura on-premise (ej: Fortaleza del Valle).
+Existe un `Jenkinsfile` para entornos que requieren despliegue desde una infraestructura on-premise o alternativa a GitHub Actions.
 
 **Diferencias clave**:
 - Usa agentes Jenkins locales.

@@ -1,10 +1,55 @@
 # Plantilla Neutral de Secrets GitHub · INATrace
 
+> **Última actualización**: Diciembre 2025
+
 > **Uso:** Copiar esta tabla, rellenar la columna "Valor empresa" y luego crear los secrets con esos nombres en GitHub (`Settings → Secrets and variables → Actions`).
 >
-> **Convención recomendada:**
-> - Backend: `DEV_*`, `STAGE_{COMPANY}_*`, `PROD_{COMPANY}_*`
-> - Frontend: `DEV_*` (reutiliza los mismos de backend) y `STAGE_FE_{COMPANY}_*`, `PROD_FE_{COMPANY}_*` para el acceso SSH.
+> **Convención recomendada (Diciembre 2025):**
+> - Development: `DEV_*`
+> - Staging: `TEST_{COMPANY}_*`
+> - Production: `PROD_{COMPANY}_*`
+
+## ⚠️ Nueva Convención (Diciembre 2025)
+
+Con la arquitectura de **workflows separados por empresa** (frontend y backend), se usa la siguiente convención unificada:
+
+### Convención Unificada
+
+| Ambiente | Prefijo | Ejemplo |
+|----------|---------|---------|
+| **Development** | `DEV_` | `DEV_HOST`, `DEV_SSH_KEY` |
+| **Staging** | `TEST_{COMPANY}_` | `TEST_AGROEC_HOST` |
+| **Production** | `PROD_{COMPANY}_` | `PROD_AGROEC_HOST` |
+
+### Secrets Requeridos - Frontend
+
+| Tipo | Staging (TEST_) | Production (PROD_) |
+|------|-----------------|-------------------|
+| Host | `TEST_{COMPANY}_HOST` | `PROD_{COMPANY}_HOST` |
+| Usuario SSH | `TEST_{COMPANY}_USER` | `PROD_{COMPANY}_USER` |
+| Autenticación | `TEST_{COMPANY}_PASSWORD` o `TEST_{COMPANY}_SSH_KEY` | `PROD_{COMPANY}_SSH_KEY` |
+| Puerto | `TEST_{COMPANY}_PORT` (opcional) | `PROD_{COMPANY}_PORT` (opcional) |
+
+### Secrets Requeridos - Backend (adicionales)
+
+| Tipo | Staging (TEST_) | Production (PROD_) |
+|------|-----------------|-------------------|
+| BD Root | `TEST_{COMPANY}_DB_ROOT_PASSWORD` | `PROD_{COMPANY}_DB_ROOT_PASSWORD` |
+| BD User Password | `TEST_{COMPANY}_DATASOURCE_PASSWORD` | `PROD_{COMPANY}_DATASOURCE_PASSWORD` |
+| Mail Password | `TEST_{COMPANY}_MAIL_PASSWORD` | `PROD_{COMPANY}_MAIL_PASSWORD` |
+| AgStack Email | `TEST_{COMPANY}_AGSTACK_EMAIL` (opcional) | `PROD_{COMPANY}_AGSTACK_EMAIL` (opcional) |
+| AgStack Password | `TEST_{COMPANY}_AGSTACK_PASSWORD` (opcional) | `PROD_{COMPANY}_AGSTACK_PASSWORD` (opcional) |
+
+> **Nota:** Cada workflow (`deploy-{frontend|backend}-{empresa}.yml`) usa solo los secrets de su empresa, lo que simplifica la gestión y reduce errores.
+> Reemplazar `{COMPANY}` con el código de la organización (ej: `AGROEC`, `COFFEECO`).
+
+---
+
+## Convención Legacy
+
+La convención anterior (`STAGE_FE_{COMPANY}_*`, `PROD_FE_{COMPANY}_*`) sigue siendo válida para el workflow monolítico si aún se utiliza.
+
+---
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Audiencia**: DevOps, Desarrolladores Frontend  
 > **Componente**: Frontend  
-> **Última actualización**: Noviembre 2025
+> **Última actualización**: Diciembre 2025
 
 ## Descripción General
 
@@ -14,6 +14,7 @@ El pipeline de CI/CD del frontend de INATrace automatiza la construcción, prueb
 - **Configuración Runtime**: Inyección de variables de entorno (API URL, Tema) al iniciar el contenedor, sin recompilar.
 - **Verificación de Calidad**: Linting y Pruebas Unitarias (Headless Chrome).
 - **Despliegue Sin Caída**: Uso de `docker-compose` con recreación orquestada.
+- **Workflows Separados por Producto**: Pipelines independientes para cada empresa/organización.
 
 ---
 
@@ -54,9 +55,44 @@ graph TD
 
 ---
 
+## Arquitectura de Workflows Separados (Diciembre 2025)
+
+A partir de diciembre 2025, el frontend utiliza **workflows independientes por producto/empresa**, siguiendo mejores prácticas de DevOps para aislamiento de fallos y ciclos de release independientes.
+
+### Estructura de Workflows
+
+```
+fe/.github/workflows/
+├── deploy-frontend-develop.yml      # 🚀 Development (todos los productos)
+├── deploy-frontend-{empresa1}.yml   # 🍫 Empresa 1 - staging + production
+├── deploy-frontend-{empresa2}.yml   # 🦐 Empresa 2 - staging + production
+└── (Jenkinsfile)                    # 🏛️ Alternativa Jenkins (si aplica)
+```
+
+### Flujo de Despliegue por Branch
+
+| Branch | Workflow | Empresa | Ambiente |
+|--------|----------|---------|----------|
+| `develop` | `deploy-frontend-develop.yml` | (Desarrollo) | Dev todos los productos |
+| `staging` | `deploy-frontend-{empresa}.yml` | Empresa X | Staging |
+| `main` | `deploy-frontend-{empresa}.yml` | Empresa X | Production |
+
+> **Nota**: Algunas organizaciones pueden usar Jenkins u otro CI/CD en lugar de GitHub Actions.
+
+### Beneficios de la Separación
+
+| Aspecto | Beneficio |
+|---------|-----------|
+| **Aislamiento** | Un fallo en Empresa A no afecta a Empresa B |
+| **Releases independientes** | Cada empresa tiene su propio calendario |
+| **Trazabilidad** | Historial y logs separados por producto |
+| **Escalabilidad** | Agregar empresa = crear nuevo workflow |
+
+---
+
 ## Configuración del Workflow
 
-El archivo principal es `.github/workflows/deploy-frontend.yml`.
+Cada workflow sigue la misma estructura: `quality` → `build` → `deploy-staging` → `deploy-production`.
 
 ### Variables de Entorno Clave
 
@@ -139,8 +175,10 @@ El pipeline ejecuta los siguientes pasos en el servidor destino:
 
 La configuración de secretos y despliegue por empresa en el frontend está alineada con las plantillas generales utilizadas en el backend:
 
-- La **lista neutralizada de secrets** para todos los entornos (incluyendo `STAGE_FE_{COMPANY}_*` y `PROD_FE_{COMPANY}_*` para frontend) se documenta en `../despliegue/variables-secrets-template.md`. Allí se definen los patrones de nombres recomendados para servidores, usuarios SSH y credenciales asociadas a cada compañía.
-- La estructura de **jobs de despliegue por empresa** para frontend (por ejemplo, `deploy-test-{company_code}` y `deploy-prod-{company_code}`) se describe en `../despliegue/plantilla-workflow-frontend-empresa.md`, que explica cómo reutilizar el archivo de plantilla técnica `fe/.github/workflows/deploy-frontend-company-template.yml` mediante placeholders (`{COMPANY_CODE}`, `{company_code}`, `{company-domain}`).
+- La **lista neutralizada de secrets** para todos los entornos se documenta en `../despliegue/variables-secrets-template.md`. La convención actual es:
+  - Staging: `TEST_{COMPANY}_HOST`, `TEST_{COMPANY}_USER`, `TEST_{COMPANY}_PASSWORD`, `TEST_{COMPANY}_PORT`
+  - Production: `PROD_{COMPANY}_HOST`, `PROD_{COMPANY}_USER`, `PROD_{COMPANY}_SSH_KEY`, `PROD_{COMPANY}_PORT`
+- La estructura de **workflows separados por empresa** (ej: `deploy-frontend-{empresa}.yml`) se describe en `../despliegue/plantilla-workflow-frontend-empresa.md`.
 
 De este modo, la documentación de frontend mantiene la misma línea que la del backend: una sola matriz de variables sensibles y un conjunto de plantillas estándar que pueden adaptarse a cualquier organización que opere INATrace.
 
@@ -175,4 +213,11 @@ De este modo, la documentación de frontend mantiene la misma línea que la del 
 
 ---
 
-**Última actualización**: Noviembre 2025
+## Recursos Adicionales sobre CI/CD
+
+- [Cambios CI/CD Diciembre 2025](../../docs/cambios/2025-12-08-cicd-workflows-separados-por-producto.md) - Detalle completo de la reestructuración
+- [Análisis CI/CD](../../docs/tecnico/analisis-despliegue-ci-cd.md) - Documentación técnica completa
+
+---
+
+**Última actualización**: Diciembre 2025

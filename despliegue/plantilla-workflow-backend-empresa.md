@@ -1,16 +1,51 @@
 # Plantilla de workflow backend por empresa (staging + prod)
 
-Esta plantilla está basada en `backend/.github/workflows/deploy-backend.yml` y sirve para crear **jobs de despliegue por empresa** en los entornos **staging** y **producción**.
+> **Última actualización**: Diciembre 2025
 
-La idea es:
+## ⚠️ Nueva Arquitectura (Diciembre 2025)
 
-- Mantener un workflow principal (con `quality` + `build`) que genere la imagen Docker y el artefacto `be-image.tar`.
-- Añadir, por cada empresa, **dos jobs de despliegue**:
-  - `deploy-stage-<empresa>` (staging)
-  - `deploy-prod-<empresa>` (producción)
-- Cada job usa secrets específicos de esa empresa (`STAGE_{COMPANY_CODE}_*` y `PROD_{COMPANY_CODE}_*`).
+A partir de diciembre 2025, el backend utiliza **workflows completamente separados por empresa**:
 
-> **Convención recomendada para el código de empresa:** `COMPANY_CODE` en mayúsculas y sin espacios (ej.: `UNOCACE`, `DUFER`, `CLIENTE1`).
+```
+backend/.github/workflows/
+├── deploy-backend-develop.yml    # 🚀 Development (Cacao + Shrimp)
+├── deploy-backend-{empresa1}.yml # 🍫 Empresa 1 - staging + production
+├── deploy-backend-{empresa2}.yml # 🦐 Empresa 2 - staging + production
+└── (Jenkinsfile)                 # 🏛️ Alternativa Jenkins (si aplica)
+```
+
+### Agregar Nueva Empresa
+
+Para agregar una nueva empresa (ej: `NEWCO`):
+
+1. **Copiar** un workflow existente como `deploy-backend-newco.yml`
+2. **Reemplazar** en todo el archivo:
+   - `{EMPRESA_EXISTENTE}` → `NEWCO`
+   - `{empresa_existente}` → `newco`
+   - `empresa-existente.com` → `newco.com`
+3. **Crear secrets** en GitHub con la convención `TEST_*` y `PROD_*`:
+   - **Staging SSH**: `TEST_NEWCO_HOST`, `TEST_NEWCO_USER`, `TEST_NEWCO_PASSWORD`
+   - **Staging BD**: `TEST_NEWCO_DB_ROOT_PASSWORD`, `TEST_NEWCO_DATASOURCE_PASSWORD`
+   - **Production SSH**: `PROD_NEWCO_HOST`, `PROD_NEWCO_USER`, `PROD_NEWCO_SSH_KEY`
+   - **Production BD**: `PROD_NEWCO_DB_ROOT_PASSWORD`, `PROD_NEWCO_DATASOURCE_PASSWORD`
+4. **Crear environments** en GitHub: `newco-staging`, `newco-production`
+
+---
+
+## Documentación Legacy
+
+La información a continuación describe el enfoque anterior basado en jobs dentro de un workflow monolítico. Se mantiene como referencia.
+
+---
+
+## Enfoque Legacy (Archivo Monolítico)
+
+> ⚠️ **NOTA**: El código legacy a continuación usa `STAGE_` como prefijo. La convención actual es `TEST_` para staging.
+> Si usas este código, reemplaza `STAGE_` por `TEST_` para mantener consistencia.
+
+Esta plantilla está basada en el antiguo `backend/.github/workflows/deploy-backend.yml` y servía para crear **jobs de despliegue por empresa** dentro de un solo archivo.
+
+> **Convención actual de secrets**: `TEST_{COMPANY_CODE}_*` para staging, `PROD_{COMPANY_CODE}_*` para producción.
 
 ---
 
@@ -18,8 +53,8 @@ La idea es:
 
 En el snippet YAML de abajo, sustituye:
 
-- `{COMPANY_CODE}` → código interno de la empresa (ej.: `DUFER`).
-- `{company_code}` → el mismo código pero en minúsculas (ej.: `dufer`).
+- `{COMPANY_CODE}` → código interno de la empresa (ej.: `AGROEC`).
+- `{company_code}` → el mismo código pero en minúsculas (ej.: `agroec`).
 - `{company-domain}` → dominio público de la empresa (ej.: `backend-test.company.com`).
 
 Puedes copiar el bloque YAML, pegarlo en tu workflow backend y luego hacer **buscar/reemplazar** de estos tokens.
@@ -388,8 +423,8 @@ jobs:
 1. Copia el bloque `jobs:` de arriba.
 2. Pégalo en tu `backend/.github/workflows/deploy-backend.yml` (o en un nuevo workflow backend) debajo de los jobs existentes.
 3. Haz **buscar/reemplazar**:
-   - `{COMPANY_CODE}` → por ejemplo `DUFER`.
-   - `{company_code}` → `dufer`.
+   - `{COMPANY_CODE}` → por ejemplo `AGROEC`.
+   - `{company_code}` → `agroec`.
    - `{company-domain}` → dominio de backend/empresa, por ejemplo `empresax.example.com`.
 4. Crea los **secrets** indicados en la plantilla (`STAGE_{COMPANY_CODE}_*` y `PROD_{COMPANY_CODE}_*`) usando la plantilla de secrets que ya definimos.
 5. Haz un push a la rama `staging` o `main` y verifica que se disparan los jobs nuevos de staging/prod para esa empresa.

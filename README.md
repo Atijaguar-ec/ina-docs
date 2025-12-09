@@ -4,7 +4,7 @@
 
 > **Audiencia**: Desarrolladores, Arquitectos, DevOps, Analistas de Negocio  
 > **Versión**: 2.0  
-> **Última actualización**: Noviembre 2025
+> **Última actualización**: Diciembre 2025
 
 ---
 
@@ -130,8 +130,9 @@ docker-compose up -d
 ### Para DevOps
 
 1. Leer [Guía CI/CD Backend](./backend/guia-cicd-backend.md)
-2. Leer [Guía CI/CD Frontend](./frontend/guia-cicd-frontend.md)
-3. Consultar [Despliegue en Producción](./despliegue/produccion.md)
+2. Leer [Guía CI/CD Frontend](./frontend/guia-cicd-frontend.md) - **Nuevo**: Workflows separados por empresa
+3. Consultar [Plantilla Workflows Frontend](./despliegue/plantilla-workflow-frontend-empresa.md)
+4. Consultar [Despliegue en Producción](./despliegue/produccion.md)
 
 ---
 
@@ -191,4 +192,12 @@ Ver archivo [LICENSE](./LICENSE) para más detalles.
 ---
 
 **Mantenido por la comunidad INATrace**  
-**Última actualización**: Noviembre 2025
+**Última actualización**: Diciembre 2025
+
+---
+
+## 📋 Changelog Reciente
+
+### Diciembre 2025
+- **CI/CD Frontend**: Arquitectura de workflows separados por empresa (pipelines independientes)
+- **Mejoras DevOps**: Soporte para Jenkins como alternativa a GitHub Actions

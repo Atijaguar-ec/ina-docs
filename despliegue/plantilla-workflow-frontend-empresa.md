@@ -1,5 +1,55 @@
 # Plantilla de workflow frontend por empresa (staging/test + prod)
 
+> **Última actualización**: Diciembre 2025
+
+## ⚠️ Nuevo Enfoque: Workflows Separados por Empresa
+
+A partir de **diciembre 2025**, se adoptó una arquitectura de **workflows independientes por empresa**, en lugar de un workflow monolítico con múltiples jobs.
+
+### Estructura Actual
+
+```
+fe/.github/workflows/
+├── deploy-frontend-develop.yml      # 🚀 Development (todos los productos)
+├── deploy-frontend-{empresa1}.yml   # 🍫 Empresa 1 - staging + production
+├── deploy-frontend-{empresa2}.yml   # 🦐 Empresa 2 - staging + production
+└── (Jenkinsfile)                    # 🏛️ Alternativa Jenkins (si aplica)
+```
+
+### Beneficios del Nuevo Enfoque
+
+| Antes (Monolítico) | Ahora (Separado) |
+|-------------------|------------------|
+| 1 workflow ~950 líneas | N workflows ~300 líneas c/u |
+| Fallo en Empresa A afecta Empresa B | Pipelines 100% independientes |
+| Logs mezclados | Historial claro por empresa |
+| Difícil escalar | Nuevo workflow por empresa |
+
+### Agregar Nueva Empresa
+
+Para agregar una nueva empresa (ej: `NEWCO`):
+
+1. **Copiar** un workflow existente como `deploy-frontend-newco.yml`
+2. **Reemplazar** en todo el archivo:
+   - `{EMPRESA_EXISTENTE}` → `NEWCO`
+   - `{empresa_existente}` → `newco`
+   - `empresa-existente.com` → `newco.com`
+   - `{PRODUCT_TYPE}` → tipo de producto correspondiente (`COCOA`, `SHRIMP`, `COFFEE`)
+3. **Crear secrets** en GitHub con la convención `TEST_*` y `PROD_*`:
+   - Staging: `TEST_NEWCO_HOST`, `TEST_NEWCO_USER`, `TEST_NEWCO_PASSWORD`, `TEST_NEWCO_PORT`
+   - Production: `PROD_NEWCO_HOST`, `PROD_NEWCO_USER`, `PROD_NEWCO_SSH_KEY`, `PROD_NEWCO_PORT`
+4. **Crear environments** en GitHub: `newco-staging`, `newco-production`
+
+---
+
+## Documentación Legacy
+
+La información a continuación describe el enfoque anterior basado en plantillas de jobs. Se mantiene como referencia para migraciones o casos especiales.
+
+---
+
+## Enfoque Legacy: Plantilla de Jobs por Empresa
+
 Esta plantilla está basada en `fe/.github/workflows/deploy-frontend.yml` y en el archivo de ejemplo `fe/.github/workflows/deploy-frontend-company-template.yml`. 
 Su objetivo es proporcionar un modelo **neutral y reutilizable** para definir jobs de despliegue de frontend **por empresa**, en los entornos **staging/test** y **producción**.
 
@@ -13,7 +63,7 @@ La idea general es:
   - `deploy-prod-<empresa>` (producción).
 - Cada job utiliza secrets específicos de esa empresa en GitHub (`STAGE_FE_{COMPANY}_*` y `PROD_FE_{COMPANY}_*`).
 
-> **Convención recomendada para el código de empresa:** `COMPANY_CODE` en mayúsculas y sin espacios (ej.: `UNOCACE`, `DUFER`, `AGROEC`).
+> **Convención recomendada para el código de empresa:** `COMPANY_CODE` en mayúsculas y sin espacios (ej.: `AGROEC`, `COFFEECO`, `CLIENTE1`).
 
 ---
 
