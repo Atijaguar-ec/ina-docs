@@ -3,8 +3,8 @@
 **INATrace** es una plataforma integral de trazabilidad para cadenas de valor agrícola que permite el seguimiento completo de productos desde la producción hasta el consumidor final, garantizando transparencia, calidad y sostenibilidad en toda la cadena de suministro.
 
 > **Audiencia**: Desarrolladores, Arquitectos, DevOps, Analistas de Negocio  
-> **Versión**: 2.0  
-> **Última actualización**: Diciembre 2025
+> **Versión**: 2.3  
+> **Última actualización**: Noviembre 2026
 
 ---
 
@@ -19,6 +19,26 @@ INATrace es un sistema modular que integra:
 - **APIs REST**: Integración con sistemas externos
 - **Aplicación móvil**: Captura de datos en campo
 - **Portal web**: Gestión completa y reportes
+
+---
+
+## 🌟 Suite Oficial de Manuales de Instalación, Operación y Serie Audiovisual
+
+Documentación verificada empíricamente en instancia limpia Ubuntu 24.04 LTS desde la rama `main` (`Atijaguar-ec/backend` y `Atijaguar-ec/fe`):
+
+### 📚 Manuales Técnicos Paso a Paso
+- [**Índice Maestro de Manuales Técnicos**](./manuales/README.md) - Mapa de navegación por rol, glosario internacional y convenciones.
+- [**Módulo 00: Dictamen UX/UI, Design Thinking y Guía Editorial**](./manuales/00-aprobacion-ux-ui-design-thinking-handoff-disenador.md) - Paleta HEX/CMYK WCAG AA/AAA (incluido tema Keycloak `inatrace`), retícula A4 y catálogo de 13 láminas vectoriales (`IL-01` a `IL-13`).
+- [**Módulo 01: Instalación y Despliegue de Infraestructura**](./manuales/01-manual-instalacion-despliegue.md) - OS/Docker/UFW, compilación desde `main`, Docker Compose, PostgreSQL 16, Keycloak 26 (tema visual `inatrace`, `inatrace-browser-flow` y `manage-users`), Spring Boot 3.3, Angular 19, Nginx TLS/redirección canónica y *bootstrap* inicial.
+- [**Módulo 02: Configuración Multi-Tenant y Multi-Cadena**](./manuales/02-manual-configuracion-multitenant-multicadena.md) - Aislamiento ADR-007, Cacao en Baba/Seco, Café, alcance ADR-016 para Camarón, catálogos DPA INEC/ISO y control de cupos.
+- [**Módulo 03: Operación Funcional y Trazabilidad de Campo a Puerto**](./manuales/03-manual-operacion-trazabilidad.md) - Pesaje en báscula y API, tickets térmicos POS (72 mm), balance de masas, comprobante QR público y EUDR / TRACES-NT.
+- [**Módulo 04: Seguridad, Identidad y Gobernanza de Datos**](./manuales/04-manual-seguridad-identidad-cumplimiento.md) - Keycloak OIDC PKCE, RBAC, cuentas técnicas ERP, privacidad B2C y *hardening*.
+- [**Módulo 05: Mantenimiento, Migraciones y Resolución de Problemas**](./manuales/05-manual-mantenimiento-migraciones-troubleshooting.md) - Backups automatizados con `cron`, *Disaster Recovery*, ciclo Flyway y matriz de 12 incidentes reales.
+- [**Artefactos Verificados (`verificado/`)**](./manuales/verificado/README.md) - `docker-compose.verificado.yml`, `nginx-inatrace.verificado.conf`, `nginx-http-limit_req_zone.conf`, `primer-admin.sql` y plantilla oficial `keycloak-theme/inatrace/`.
+- [**Informe Empírico de Despliegue en VM Limpia GCP (`main`)**](./informe-prueba-gcp-vm-limpia-2026-11-16.md) - Evidencia de tiempos reales, Flyway `V1`–`V15`, tema `inatrace`, redirección `redirect_uri` y pruebas de punta a punta.
+
+### 🎬 Serie Audiovisual (Cápsulas 01 a 05)
+- [**Plan Maestro de Producción Audiovisual**](./audiovisual/README.md) y guiones técnicos: [**Cápsula 01**](./audiovisual/01-guion-video-arquitectura-repositorios-licencias.md) · [**Cápsula 02**](./audiovisual/02-guion-video-infraestructura-costos-sizing.md) · [**Cápsula 03**](./audiovisual/03-guion-video-despliegue-docker-keycloak.md) · [**Cápsula 04**](./audiovisual/04-guion-video-configuracion-multicadena-qr.md) · [**Cápsula 05**](./audiovisual/05-guion-video-traces-eudr-mantenimiento-buenas-practicas.md).
 
 ---
 
@@ -192,7 +212,7 @@ Ver archivo [LICENSE](./LICENSE) para más detalles.
 ---
 
 **Mantenido por la comunidad INATrace**  
-**Última actualización**: Diciembre 2025
+**Última actualización**: Noviembre 2026
 
 ---
 
